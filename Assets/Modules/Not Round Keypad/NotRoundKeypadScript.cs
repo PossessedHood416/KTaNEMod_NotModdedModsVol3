@@ -449,10 +449,10 @@ public partial class NotRoundKeypadScript : MonoBehaviour
                 case "3":
                     list.Add(2);
                     break;
-                case "upleft":
-                case "ul":
-                case "northwest":
-                case "nw":
+                case "downright":
+                case "dr":
+                case "southeast":
+                case "se":
                 case "4":
                     list.Add(3);
                     break;
@@ -463,10 +463,10 @@ public partial class NotRoundKeypadScript : MonoBehaviour
                 case "5":
                     list.Add(4);
                     break;
-                case "downright":
-                case "dr":
-                case "southeast":
-                case "se":
+                case "downleft":
+                case "dl":
+                case "southwest":
+                case "sw":
                 case "6":
                     list.Add(5);
                     break;
@@ -477,10 +477,10 @@ public partial class NotRoundKeypadScript : MonoBehaviour
                 case "7":
                     list.Add(6);
                     break;
-                case "downleft":
-                case "dl":
-                case "southwest":
-                case "sw":
+                case "upleft":
+                case "ul":
+                case "northwest":
+                case "nw":
                 case "8":
                     list.Add(7);
                     break;
@@ -496,6 +496,7 @@ public partial class NotRoundKeypadScript : MonoBehaviour
                     yield return "sendtochaterror You cannot move diagonally. Command ignored.";
                     yield break;
                 }
+                yield return null;
                 foreach (var btn in list)
                 {
                     ButtonSels[btn].OnInteract();
@@ -513,10 +514,12 @@ public partial class NotRoundKeypadScript : MonoBehaviour
                     yield return "sendtochaterror You cannot submit on a non-diagonal button. Command ignored.";
                     yield break;
                 }
+                yield return null;
                 ButtonSels[list[0]].OnInteract();
                 break;
             case "highlight":
             case "hl":
+                yield return null;
                 foreach (var btn in list)
                 {
                     ButtonSels[btn].OnHighlight();
@@ -584,6 +587,7 @@ public partial class NotRoundKeypadScript : MonoBehaviour
         }
         for (int i = path.Count - 1; i >= 0; i--)
         {
+            yield return null;
             ButtonSels[(int)path[i] * 2].OnInteract();
             yield return new WaitForSeconds(0.2f);
         }
